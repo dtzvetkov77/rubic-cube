@@ -17,6 +17,10 @@ const accessorySchema = new mongoose.Schema({
             validator: /^http?/g,
             message:  'Image url should be link'
         }
+    },
+    cube: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Cube'
     }
 });
 
