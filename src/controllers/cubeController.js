@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const cubeService = require("../services/cubeService");
 
-const cubes = require("../db.json");
+
 const path = require("path");
 
 router.get("/create", (req, res) => {
