@@ -18,10 +18,12 @@ const accessorySchema = new mongoose.Schema({
             message:  'Image url should be link'
         }
     },
-    cube: {
+    cubes: [
+        {
         type: mongoose.Types.ObjectId,
         ref: 'Cube'
-    }
+        }
+    ]
 });
 
 const Accessory = mongoose.model('Accessory', accessorySchema);
