@@ -1,7 +1,5 @@
-const fs = require('fs/promises');
-const path = require('path');
-
-const Cube = require('../models/Cube')
+const Cube = require('../models/Cube');
+const Accessory = require('../models/Accessory')
 
 
 exports.getAll = async (search = '', fromInput, toInput) => {
@@ -17,3 +15,17 @@ exports.getAll = async (search = '', fromInput, toInput) => {
 exports.getOne = (cubeId) => Cube.findById(cubeId);
 
 exports.create = (cube) => Cube.create(cube);
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+  const cube  = await Cube.findById(cubeId);
+  const accessories = await Accessory.findById(accessoryId);
+
+  cube.accessories.push(accessories);
+  accessories.cubes.push(cube);
+
+  await cube.save();
+  await accessories.save();
+
+  return cube;
+  
+} 
