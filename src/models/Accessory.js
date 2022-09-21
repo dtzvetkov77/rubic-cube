@@ -13,10 +13,6 @@ const accessorySchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         required: true,
-        validate: {
-            validator: /^http?/g,
-            message:  'Image url should be link'
-        }
     },
     cubes: [
         {
@@ -25,6 +21,10 @@ const accessorySchema = new mongoose.Schema({
         }
     ]
 });
+
+accessorySchema.path('imageUrl').validate(function(){
+    return this.imageUrl.startsWith('http')
+}, 'Image url should be a link')
 
 const Accessory = mongoose.model('Accessory', accessorySchema);
 
